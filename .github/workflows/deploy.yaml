@@ -12,8 +12,8 @@ jobs:
       - name: Deploy to DO
         uses: appleboy/ssh-action@v0.1.2
         env:
-          EMAIL_ADDRESS: ${{secrets.NODEMAIL_EMAIL}}
-          EMAIL_PASSWORD: ${{secrets.NODEMAIL_PASSWORD}}
+          NODEMAIL_EMAIL: ${{secrets.NODEMAIL_EMAIL}}
+          NODEMAIL_PASSWORD: ${{secrets.NODEMAIL_PASSWORD}}
         with:
           host: ${{secrets.SSH_HOST}}
           key: ${{secrets.SSH_KEY}}
@@ -23,6 +23,7 @@ jobs:
             cd github_pages_api
             git pull
             npm install
+            echo $NODEMAIL_EMAIL
             pm2 delete index
-            pm2 start index.js -- $EMAIL_ADDRESS $EMAIL_PASSWORD
+            pm2 start index.js -- $NODEMAIL_EMAIL $NODEMAIL_PASSWORD
             sudo systemctl reload nginx
