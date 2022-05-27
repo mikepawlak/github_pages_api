@@ -1,7 +1,7 @@
 name: Deploy to DO
 
 on:
-  pull_request:
+  commit:
     branches:
       - main
 
