@@ -12,8 +12,8 @@ jobs:
       - name: Deploy to DO
         uses: appleboy/ssh-action@v0.1.2
         env:
-          EMAIL_ADDRESS: secrets.NODEMAIL_EMAIL
-          EMAIL_PASSWORD: secrets.NODEMAIL_PASSWORD
+          EMAIL_ADDRESS: ${{secrets.NODEMAIL_EMAIL}}
+          EMAIL_PASSWORD: ${{secrets.NODEMAIL_PASSWORD}}
         with:
           host: ${{secrets.SSH_HOST}}
           key: ${{secrets.SSH_KEY}}
