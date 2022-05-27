@@ -19,6 +19,7 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           key: ${{secrets.SSH_KEY}}
           username: ${{secrets.SSH_USERNAME}}
+          envs: FOO
 
           script: |
             cd github_pages_api
