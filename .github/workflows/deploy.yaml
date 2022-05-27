@@ -19,14 +19,12 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           key: ${{secrets.SSH_KEY}}
           username: ${{secrets.SSH_USERNAME}}
-          envs: FOO
+          envs: NODEMAIL_EMAIL,NODEMAIL_PASSWORD
 
           script: |
             cd github_pages_api
             git pull
             npm install
-            echo "foo"
-            echo $FOO
             pm2 delete index
             pm2 start index.js -- $NODEMAIL_EMAIL $NODEMAIL_PASSWORD
             sudo systemctl reload nginx
