@@ -19,5 +19,4 @@ jobs:
           script: |
             git clone https://github.com/mikepawlak/github_pages_api.git
             pm2 restart index.js secrets.NODEMAIL_EMAIL secrets.NODEMAIL_PASSWORD
-
-           sudo systemctl reload nginx
+            sudo systemctl reload nginx
