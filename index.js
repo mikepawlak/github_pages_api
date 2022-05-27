@@ -13,6 +13,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/', (req, res) => {
+    res.send(":D");
+});
+
 
 const contact = require('./routes/contact.js');
 app.use('/contact', contact);
