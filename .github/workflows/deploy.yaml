@@ -9,19 +9,15 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v2
+      - name: Deploy to DO
+        uses: appleboy/ssh-action@v0.1.2
+        with: 
+          host: ${{secrets.SSH_HOST}}
+          key: ${{secrets.SSH_KEY}}
+          username: ${{secrets.SSH_USERNAME}}
 
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "18.2.0"
+          script: |
+            git clone https://github.com/mikepawlak/github_pages_api.git
+            pm2 restart index.js secrets.NODEMAIL_EMAIL secrets.NODEMAIL_PASSWORD
 
-      - name: Install dependencies
-        run: npm ci
-
-      # - name: Test application
-      #   run: npm test
-
-      - name: Build application
-        run: npm run build
+           sudo systemctl reload nginx
