@@ -17,8 +17,8 @@ jobs:
           username: ${{secrets.SSH_USERNAME}}
 
           script: |
-            git clone https://github.com/mikepawlak/github_pages_api.git
             cd github_pages_api
+            git pull
             pm2 delete index
             pm2 start index.js -- secrets.NODEMAIL_EMAIL secrets.NODEMAIL_PASSWORD
             sudo systemctl reload nginx
