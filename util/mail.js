@@ -12,7 +12,6 @@ let transporter = mailer.createTransport({
   service: "gmail",
   auth: auth,
 });
-console.log(process.argv);
 
 module.exports = (messageData) => {
   if (!auth.validated) {
